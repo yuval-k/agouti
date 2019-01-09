@@ -46,7 +46,9 @@ func (s *Session) Delete() error {
 }
 
 func (s *Session) GetElement(selector Selector) (*Element, error) {
-	var result struct{ Element string }
+	var result struct {
+		Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
+	}
 
 	if err := s.Send("POST", "element", selector, &result); err != nil {
 		return nil, err
@@ -56,7 +58,9 @@ func (s *Session) GetElement(selector Selector) (*Element, error) {
 }
 
 func (s *Session) GetElements(selector Selector) ([]*Element, error) {
-	var results []struct{ Element string }
+	var results []struct {
+		Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
+	}
 
 	if err := s.Send("POST", "elements", selector, &results); err != nil {
 		return nil, err
@@ -71,7 +75,9 @@ func (s *Session) GetElements(selector Selector) ([]*Element, error) {
 }
 
 func (s *Session) GetActiveElement() (*Element, error) {
-	var result struct{ Element string }
+	var result struct {
+		Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
+	}
 
 	if err := s.Send("POST", "element/active", nil, &result); err != nil {
 		return nil, err
@@ -225,7 +231,7 @@ func (s *Session) Frame(frame *Element) error {
 
 	if frame != nil {
 		elementID = struct {
-			Element string `json:"ELEMENT"`
+			Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
 		}{frame.ID}
 	}
 
@@ -367,7 +373,7 @@ func (s *Session) TouchClick(element *Element) error {
 	}
 
 	request := struct {
-		Element string `json:"element"`
+		Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
 	}{element.ID}
 	return s.Send("POST", "touch/click", request, nil)
 }
@@ -378,7 +384,7 @@ func (s *Session) TouchDoubleClick(element *Element) error {
 	}
 
 	request := struct {
-		Element string `json:"element"`
+		Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
 	}{element.ID}
 	return s.Send("POST", "touch/doubleclick", request, nil)
 }
@@ -389,7 +395,7 @@ func (s *Session) TouchLongClick(element *Element) error {
 	}
 
 	request := struct {
-		Element string `json:"element"`
+		Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
 	}{element.ID}
 	return s.Send("POST", "touch/longclick", request, nil)
 }
@@ -413,7 +419,7 @@ func (s *Session) TouchFlick(element *Element, offset Offset, speed Speed) error
 	} else {
 		xOffset, yOffset := offset.position()
 		request = struct {
-			Element string `json:"element"`
+			Element string `json:"element-6066-11e4-a52e-4f735466cecf"`
 			XOffset int    `json:"xoffset"`
 			YOffset int    `json:"yoffset"`
 			Speed   uint   `json:"speed"`
@@ -434,7 +440,7 @@ func (s *Session) TouchScroll(element *Element, offset Offset) error {
 
 	xOffset, yOffset := offset.position()
 	request := struct {
-		Element string `json:"element,omitempty"`
+		Element string `json:"element-6066-11e4-a52e-4f735466cecf,omitempty"`
 		XOffset int    `json:"xoffset"`
 		YOffset int    `json:"yoffset"`
 	}{element.ID, xOffset, yOffset}
